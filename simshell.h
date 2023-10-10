@@ -23,8 +23,8 @@ void simshell_loop(int argc, char **argv);
 char *read_incom();
 
 /* Function to tokenize input */
-char **tok_input(char *linebuf);
-char *simshell_strtok(char *string, const char *del);
+char **tok_input(char *linebuff);
+char *simshell_strtok(char *string, const char *delim);
 void free_tok(char **tokens_made);
 
 /* Function to execute commands */
