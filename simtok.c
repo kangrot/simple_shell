@@ -7,38 +7,38 @@
  */
 char *simshell_strtok(char *str, const char *delim)
 {
-	char *_token;
-	static char *_rem;
+	char *tok;
+	static char *rem;
 
 	if (str != NULL)
 	{
-		_rem = str;
+		rem = str;
 	}
 
-	if (_rem == NULL || *_rem == '\0')
+	if (rem == NULL || *rem == '\0')
 	{
 		return (NULL);
 	}
 
-	while (*_rem != '\0' && strchr_alt(delim, *_rem) != NULL)
+	while (*rem != '\0' && strchr(delim, *rem) != NULL)
 	{
-		_rem++;
+		rem++;
 	}
 
-	if (*_rem == '\0')
+	if (*rem == '\0')
 	{
 		return (NULL);
 	}
 
-	_token = _rem;
-	while (*_rem != '\0' && strchr(delim, *_rem) == NULL)
+	tok = rem;
+	while (*rem != '\0' && strchr(delim, *rem) == NULL)
 	{
-		_rem++;
+		rem++;
 	}
-	if (*_rem != '\0')
+	if (*rem != '\0')
 	{
-		*_rem = '\0';
-		_rem++;
+		*rem = '\0';
+		rem++;
 	}
-	return (_token);
+	return (tok);
 }

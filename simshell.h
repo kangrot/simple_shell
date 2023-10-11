@@ -9,8 +9,8 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
-#define TOK_DEL " \n"
-#define CMD_LEN 64
+#define TOK_DELI " \n"
+#define CMD_LENT 64
 #define B_SIZE 1024
 
 /* External access to environment variables */
@@ -37,7 +37,7 @@ char *find_com(const char *cmd);
 char *get_simshell_env(const char *variable_name);
 
 /* Memory management function */
-void *simshell_realloc(void *ptr, unsigned int old_s, size_t);
+void *simshell_realloc(void *ptr, unsigned int old_si, size_t new_si);
 
 /* Built-in command controllers */
 void control_b_com(char **tokens_made);
@@ -46,3 +46,5 @@ void simshell_env(void);
 
 /* Error controlling function */
 void control_err(const char *name, int cmd_count, const char *command);
+
+#endif

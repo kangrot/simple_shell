@@ -24,14 +24,14 @@ char *read_incom()
 		return (NULL);
 	}
 	/* prompt on newline if user taps on only enter, or spaces */
-	if (linebuff[0] == '\n' || (strspn_alt(linebuff, " \t\r\n") ==
-				strlen_alt(linebuff)))
+	if (linebuff[0] == '\n' || (strspn(linebuff, " \t\r\n") ==
+				strlen(linebuff)))
 	{
 		free(linebuff);
 		return (read_incom()); /*calling function recursively*/
 	}
 
-	if (linebuff[strlen_alt(linebuff) - 1] != '\n')
+	if (linebuff[strlen(linebuff) - 1] != '\n')
 	{
 		len += 2;
 		linebuff = (char *)realloc(linebuff, len);
@@ -41,7 +41,7 @@ char *read_incom()
 			perror("No allocated space");
 			return (NULL);
 		}
-		linebuff[strlen_alt(linebuff) - 1] = '\0';
+		linebuff[strlen(linebuff) - 1] = '\0';
 	}
 
 	return (linebuff);
