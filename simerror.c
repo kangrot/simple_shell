@@ -1,61 +1,62 @@
 #include "simshell.h"
 /**
- * print_error - uses write system call to print error message when cmd is not
+ * control_err - uses write system call to print error message when cmd is not
  * found
- * @name: name of the shell program
- * @cmd_count: number of command
- * @command: command
- * @error_msg: error message to be printed out
+ * @namme: name of the shell program
+ * @cmmd_count: number of command
+ * @cmmd: command
+ * @erromsg: error message to be printed out
  */
-
+void control_err(const char *namme, int cmmd_count, const char *cmmd,
+const char *erromsg)
 {
-	char command_num[2];
-	char newl = '\n';
+	char cmmd_num[2];
+	char newli = '\n';
 
-	print_string(STDERR_FILENO, name);
-	print_string(STDERR_FILENO, ": ");
-	convert_string(cmd_count, command_num);
+	output_str(STDERR_FILENO, namme);
+	output_str(STDERR_FILENO, ": ");
+	convert_str(cmmd_count, cmmd_num);
 
-	print_string(STDERR_FILENO, command_num);
-	print_string(STDERR_FILENO, ": ");
-	print_string(STDERR_FILENO, command);
-	print_string(STDERR_FILENO, ": ");
-	print_string(STDERR_FILENO, error_msg);
-	write(STDERR_FILENO, &newl, 1);
+	output_str(STDERR_FILENO, cmmd_num);
+	output_str(STDERR_FILENO, ": ");
+	output_str(STDERR_FILENO, cmmd);
+	output_str(STDERR_FILENO, ": ");
+	output_str(STDERR_FILENO, erromsg);
+	write(STDERR_FILENO, &newli, 1);
 }
 
 /**
- * print_string - prints a string to a specified file stream using write
- * @descriptor: stream
- * @string: string
+ * output_str - prints a string to a specified file stream using write
+ * @desc: stream
+ * @str: string
  */
-void print_string(int descriptor, const char *string)
+void output_str(int desc, const char *str)
 {
-	write(descriptor, string, strlen(string));
+	write(desc, str, strlen(str));
 }
 
 /**
- * convert_string - converts a string to an integer
- * @num: number
- * @string: string to be converted
+ * convert_str - converts a string to an integer
+ * @numm: number
+ * @str: string to be converted
  * Return: converted string
  */
-void convert_string(int num, char *string)
+void convert_str(int numm, char *str)
 {
-	int h = 0;
-	int length = 0;
-	int fornow = num;
+	int z = 0;
+	int len = 0;
+	int for_now = numm;
 
-	while (fornow > 0)
+	while (for_now > 0)
 	{
-		fornow /= 10;
-		length++;
+		for_now /= 10;
+		len++;
 	}
 
-	for (h = length - 1; h >= 0; h--)
+	for (z = len - 1; z >= 0; z--)
 	{
-		string[h] = '0' + (num % 10);
-		num /= 10;
+		str[z] = '0' + (numm % 10);
+		numm /= 10;
 	}
-	string[length] = '\0';
+	str[len] = '\0';
 }

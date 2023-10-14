@@ -14,15 +14,15 @@ int exec_com(char **tokk_made)
 	if (tokk_made[0] == NULL)
 		return (1);
 
-	blt_matcher(tokk_made); /* handle built_ins if presented */
+	control_b_com(tokk_made); /* handle built_ins if presented */
 	cmmd = find_com(tokk_made[0]);
 	namme = "./hsh", cmmd_count = 1, erromsg = "not found";
 	errocmmd = tokk_made[0];
 	if (cmmd == NULL)
 	{
 		free(cmmd);
-		stat = 127;
-		print_error(namme, cmmd_count, errocmmd, erromsg);
+		int stat = 127;
+		control_err(namme, cmmd_count, errocmmd, erromsg);
 		return (-1);
 	}
 	ourchild = fork();
@@ -33,13 +33,15 @@ int exec_com(char **tokk_made)
 	if (!ourchild)
 	{
 		if (execve(cmmd, tokk_made, envi) == -1)
-		{perror(cmmd);
+		{
+			perror(cmmd);
 			exit(1);
 		}
 	}
 	else
 	{
 		waitpid(ourchild, &crite, 0);
+		int stat;
 		if (WIFEXITED(crite))
 			stat = WEXITSTATUS(crite);
 	}

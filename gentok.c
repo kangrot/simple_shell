@@ -21,7 +21,7 @@ char **tok_input(char *linebuff)
 
 	while (tokk != NULL)
 	{
-		sep_tokspace[station] = strdup(tokk);
+		sep_tokspace[station] = strdup_func(tokk);
 		if (sep_tokspace[station] == NULL)
 		{
 			free(sep_tokspace);

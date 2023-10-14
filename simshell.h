@@ -14,7 +14,7 @@
 #define B_SIZE 1024
 
 /* External access to environment variables */
-extern char **environ;
+extern char **envi;
 
 /* Function for the main shell loop */
 void simshell_loop(int argc, char **argv);
@@ -40,8 +40,8 @@ char *get_simshell_env(const char *variable_name);
 void *simshell_realloc(void *ptr, unsigned int old_si, size_t new_si);
 
 /* Built-in command controllers */
-void control_b_com(char **tokens_made);
-void exit_simshell(int status);
+void control_b_com(char **tokk_made);
+void exit_simshell(int stat);
 void simshell_env(void);
 
 /* Error controlling function */
@@ -62,7 +62,5 @@ int strncmp_sim(const char *s1, const char *s2, int n);
 char *strcpy_sim(char *dest, char *source);
 char *strncpy_sim(char *dest, char *source, int n);
 int atoi_sim(char *s);
-
-int stat;
 
 #endif

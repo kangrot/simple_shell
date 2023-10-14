@@ -14,32 +14,32 @@ char *find_com(const char *cmmd)
 	if (cmmd[0] == '/' || cmmd[0] == '.' || cmmd[0] == '~')
 	{
 		if (access(cmmd, F_OK) == 0) /*checks existence of command */
-			return (strdup(cmmd));
+			return (strdup_func(cmmd));
 	}
 	else
 	{
 		if (dir == NULL)
 			return (NULL);
-		cmmd_size = strlen(cmmd);
-		dir_clone = strdup(dir);
+		cmmd_size = strlen_sim(cmmd);
+		dir_clone = strdup_func(dir);
 		tokk = strtok(dir_clone, ":");
 
 		while (tokk != NULL)
 		{
-			dir_size = strlen(tokk);
+			dir_size = strlen_sim(tokk);
 
 			if (dir_size + 1 + cmmd_size >= sizeof(fulldir))
 			{
 				free(dir_clone);
 				return (NULL);
 			}
-			strcpy(fulldir, tokk);
-			strcat(fulldir, "/");
-			strcat(fulldir, cmmd);
+			strcpy_sim(fulldir, tokk);
+			strcat_sim(fulldir, "/");
+			strcat_sim(fulldir, cmmd);
 			if (access(fulldir, F_OK) == 0)
 			{
 				free(dir_clone);
-				return (strdup(fulldir));
+				return (strdup_func(fulldir));
 			}
 			tokk = strtok(NULL, ":");
 		}
