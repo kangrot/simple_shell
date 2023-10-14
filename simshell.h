@@ -14,7 +14,7 @@
 #define B_SIZE 1024
 
 /* External access to environment variables */
-extern char **envi;
+extern char **environ;
 
 /* Function for the main shell loop */
 void simshell_loop(int argc, char **argv);

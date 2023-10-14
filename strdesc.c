@@ -1,14 +1,20 @@
 #include "simshell.h"
 
+size_t strlen_sim(const char *s);
+char *strcat_sim(char *dest, const char *src);
+int strcmp_sim(char *s1, char *s2);
+char *strchr_sim(const char *s, char c);
+char *strcpy_sim(char *dest, char *source);
+char *get_simshell_env(const char *variable_name);
 
 /**
- *strlen_alt - Entry point
- * Description - 'function returning length of a string'
+ *strlen_sim - Entry point
+ * Desc - 'function returning length of a string'
  * @s: string to be measured
  *
  * Return: the length of given string 's'
  */
-size_t strlen_alt(const char *s)
+size_t strlen_sim(const char *s)
 {
 	size_t len = 0;
 
@@ -20,17 +26,17 @@ size_t strlen_alt(const char *s)
 }
 
 /**
- * strcat_alt - Entry point
- * Description - 'a function concantenating two strings'
+ * strcat_sim - Entry point
+ * Desc - 'a function concantenating two strings'
  * @dest: char string type
  * @src: char string type
  *
  * Return: pointer to the concantenated string
  */
-char *strcat_alt(char *dest, const char *src)
+char *strcat_sim(char *dest, const char *src)
 {
 	int dest_len = 0;
-	int h;
+	int z;
 
 
 	/*Find the length of the destination string*/
@@ -45,14 +51,14 @@ char *strcat_alt(char *dest, const char *src)
 	/*append the first string to the destination string */
 
 
-	for (h = 0; src[h] != '\0'; h++)
+	for (z = 0; src[z] != '\0'; z++)
 	{
-		dest[dest_len + h] = src[h];
+		dest[dest_len + z] = src[z];
 	}
 	/* add null terminating character to concantenated string */
 
 
-	dest[dest_len + h] = '\0';
+	dest[dest_len + z] = '\0';
 
 
 	return (dest);
@@ -62,8 +68,8 @@ char *strcat_alt(char *dest, const char *src)
 
 
 /**
- * strcmp_alt - Entry point
- * Description - 'a function comparing two strings'
+ * strcmp_sim - Entry point
+ * Desc - 'a function comparing two strings'
  * @s1: first string to be checked
  * @s2: second string to be checked
  *
@@ -73,7 +79,7 @@ char *strcat_alt(char *dest, const char *src)
  */
 
 
-int strcmp_alt(char *s1, char *s2)
+int strcmp_sim(char *s1, char *s2)
 {
 	int len;
 
@@ -90,11 +96,9 @@ int strcmp_alt(char *s1, char *s2)
 }
 
 
-
-
 /**
- * strchr_alt - Entry point
- * Description - ' a function searching for the first occurence of a character
+ * strchr_sim - Entry point
+ * Desc - ' a function searching for the first occurence of a character
  * in a string'
  * @s: a pointer to the string to be searched
  * @c: the character to be searched for
@@ -104,7 +108,7 @@ int strcmp_alt(char *s1, char *s2)
  */
 
 
-char *strchr_alt(const char *s, char c)
+char *strchr_sim(const char *s, char c)
 {
 	while (*s != '\0')
 	{
@@ -116,8 +120,8 @@ char *strchr_alt(const char *s, char c)
 }
 
 /**
- * memcpy_alt - Entry point
- * Description: 'function copying memory area'
+ * memcpy_sim - Entry point
+ * Desc: 'function copying memory area'
  * @src: source char string type
  * @dest: destination string type
  * @n: maximum number of byte area to be copied
@@ -125,58 +129,58 @@ char *strchr_alt(const char *s, char c)
  */
 
 
-char *memcpy_alt(char *dest, char *src, unsigned int n)
+char *memcpy_sim(char *dest, char *src, unsigned int n)
 {
-	unsigned int h = 0;
+	unsigned int z = 0;
 
 
-	for (h = 0; h < n; h++)
+	for (z = 0; z < n; z++)
 	{
-		dest[h] = src[h];
+		dest[z] = src[z];
 
 
 	}
 	return (dest);
 }
 /**
- * strcpy_alt - Entry point
- * Description - 'a function copying one pointer to another pointer'
+ * strcpy_sim - Entry point
+ * Desc - 'a function copying one pointer to another pointer'
  * @source: char type string
- * @destination: char string type
+ * @dest: char string type
  * Return: Pointer to dest
  */
 
-char *strcpy_alt(char *destination, char *source)
+char *strcpy_sim(char *dest, char *source)
 {
-	int h = 0;
+	int z = 0;
 
-	while (source[h] != '\0')
+	while (source[z] != '\0')
 	{
-		destination[h] = source[h];
-		h++;
+		dest[z] = source[z];
+		z++;
 	}
-	destination[h] = '\0';
-	return (destination);
+	dest[z] = '\0';
+	return (dest);
 }
 
 /**
- * getenv_alt - Retrieves the value of an environment variable
+ * get_simshell_env - Retrieves the value of an environment variable
  * @variable_name: The name of the variable to retrieve
  *
  * Return: The value of the environment variable, or NULL if not found
  */
-char *getenv_alt(const char *variable_name)
+char *get_simshell_env(const char *variable_name)
 {
-	int name_length = strlen_alt(variable_name);
+	int name_len = strlen_sim(variable_name);
 
 	char **env;
 
 	for (env = environ; *env; ++env)
 	{
-		if (strncmp_alt(variable_name, *env, name_length)
-				== 0 && (*env)[name_length] == '=')
+		if (strncmp_sim(variable_name, *env, name_len)
+				== 0 && (*env)[name_len] == '=')
 		{
-			return (&((*env)[name_length + 1]));
+			return (&((*env)[name_len + 1]));
 		}
 	}
 	return (NULL);

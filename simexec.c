@@ -1,4 +1,7 @@
 #include "simshell.h"
+
+int exec_com(char **tokk_made);
+
 /**
  * exec_com - Uses execve and fork to create processes to execute commands
  * @tokk_made: double pointer to commands/tokens
@@ -22,6 +25,7 @@ int exec_com(char **tokk_made)
 	{
 		free(cmmd);
 		int stat = 127;
+
 		control_err(namme, cmmd_count, errocmmd, erromsg);
 		return (-1);
 	}
@@ -32,7 +36,7 @@ int exec_com(char **tokk_made)
 	}
 	if (!ourchild)
 	{
-		if (execve(cmmd, tokk_made, envi) == -1)
+		if (execve(cmmd, tokk_made, environ) == -1)
 		{
 			perror(cmmd);
 			exit(1);
@@ -42,6 +46,7 @@ int exec_com(char **tokk_made)
 	{
 		waitpid(ourchild, &crite, 0);
 		int stat;
+
 		if (WIFEXITED(crite))
 			stat = WEXITSTATUS(crite);
 	}
