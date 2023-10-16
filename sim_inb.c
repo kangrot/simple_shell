@@ -41,5 +41,26 @@ void control_b_com(char **tokk_made)
 		/* shell_env();*/
 
 		return;
+
+	}
+	else if (strcmp_sim(tokk_made[0], "cd") == 0)
+	{
+
+		if (tokk_made[1] != NULL)
+		{
+
+			if (chdir(tokk_made[1]) != 0)
+			{
+				perror("cd");
+			}
+		}
+		else
+		{
+
+			if (chdir(getenv("HOME")) != 0)
+			{
+				perror("cd");
+			}
+		}
 	}
 }

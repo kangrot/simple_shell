@@ -41,6 +41,7 @@ void *simshell_realloc(void *ptr, unsigned int old_si, size_t new_si);
 
 /* Built-in command controllers */
 void control_b_com(char **tokk_made);
+void control_c_com(char **killtok_made);
 void exit_simshell(int stat);
 void simshell_env(void);
 
