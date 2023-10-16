@@ -14,8 +14,33 @@ int exec_com(char **tokk_made)
 	const char *errocmmd, *namme, *erromsg;
 	pid_t ourchild;
 
+	/* Set up the signal handler for CTRL+ C */
+	signal(SIGINT, simsig_hand);
+
 	if (tokk_made[0] == NULL)
 		return (1);
+
+	if (strcmp_sim(tokk_made[0], "cd") == 0)
+	{
+		/* Handle "cd" command as a special case*/
+		if (tokk_made[1] == NULL)
+		{
+			/*Change to the user's home directory if no directory is specified*/
+			if (chdir(getenv("HOME")) != 0)
+			{
+				perror("cd");
+			}
+		}
+		else
+		{
+			/* Attempt to change the directory to the specified path */
+			if (chdir(tokk_made[1]) != 0)
+			{
+				perror("cd");
+			}
+		}
+		return (0);
+	}
 
 	control_b_com(tokk_made); /* handle built_ins if presented */
 	cmmd = find_com(tokk_made[0]);

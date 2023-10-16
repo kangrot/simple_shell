@@ -1,8 +1,11 @@
 #include "simshell.h"
+
+char *read_incom();
+
 /**
-  * read_incom - Uses getline to read input of user and handles EOF condition
-  * Return: the input string
-  */
+ * read_incom - Uses getline to read input of user and handles EOF condition
+ * Return: the input string
+ */
 
 char *read_incom()
 {
@@ -14,6 +17,9 @@ char *read_incom()
 	{
 		write(STDOUT_FILENO, "~$ ", 3);
 	}
+
+	/* Set up the signal handler for CTRL+D */
+	signal(SIGINT, ctrl_d_handler);
 
 	line_len = getline(&linebuff, &len, stdin);
 

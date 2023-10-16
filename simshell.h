@@ -1,6 +1,7 @@
 #ifndef _SIMSHELL_H
 #define _SIMSHELL_H
 
+#include <signal.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,6 +30,8 @@ void free_tok(char **tokk_made);
 
 /* Function to execute commands */
 int exec_com(char **tokk_made);
+void simsig_hand(int sig);
+void ctrl_d_handler(int signum);
 
 /* Function to check if a command exists in the system */
 char *find_com(const char *cmmd);
@@ -41,7 +44,6 @@ void *simshell_realloc(void *ptr, unsigned int old_si, size_t new_si);
 
 /* Built-in command controllers */
 void control_b_com(char **tokk_made);
-void control_c_com(char **killtok_made);
 void exit_simshell(int stat);
 void simshell_env(void);
 
