@@ -15,7 +15,7 @@ char *read_incom()
 
 	if (isatty(STDIN_FILENO) == 1)
 	{
-		write(STDOUT_FILENO, "~$ ", 3);
+		write(STDOUT_FILENO, "~simshel$ ", 10);
 	}
 
 	/* Set up the signal handler for CTRL+D */
