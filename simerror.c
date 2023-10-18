@@ -27,7 +27,7 @@ const char *erromsg)
 
 /**
  * output_str - prints a string to a specified file stream using write
- * @desc: stream
+ * @desc: file stream to be printed to
  * @str: string
  */
 void output_str(int desc, const char *str)
