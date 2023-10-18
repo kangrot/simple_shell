@@ -49,7 +49,7 @@ sep_tokspace, buff_sim * sizeof(char *), buff_sim * sizeof(char *));
 
 
 /**
-  * simshell_realloc -  Responsible for reallocating memory
+  * simshell_realloc - reallocates memory
   * @ptr: pointer to new block of memory
   * @old_si: old size
   * @new_si: new size
