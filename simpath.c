@@ -2,7 +2,7 @@
 /**
  * find_com - Check if the command exists in the PATH directories
  * @cmmd: The command to check
- * Return: path of the executable if it exists
+ * Return: path to the executable if it exists
  */
 char *find_com(const char *cmmd)
 {
