@@ -21,13 +21,13 @@ char *get_hist_file(info_t *info)
 	if (!dir)
 		return (NULL);
 	buff = malloc(sizeof(char) *
-			(simp_strlen(dir) + simp _strlen(HIST_FILE) + 2));
+			(simp_strlen(dir) + simp_strlen(HIST_FILE) + 2));
 	if (!buff)
 		return (NULL);
 	buff[0] = 0;
 	simp_strcpy(buff, dir);
 	simp_strcat(buff, "/");
-	simp_strcat(buf, HIST_FILE);
+	simp_strcat(buff, HIST_FILE);
 	return (buff);
 }
 
@@ -88,9 +88,9 @@ int read_hist(info_t *info)
 	if (!buff)
 		return (0);
 	rdlen = read(fd, buff, fsize);
-	buf[fsize] = 0;
+	buff[fsize] = 0;
 	if (rdlen <= 0)
-		return (free(buf), 0);
+		return (free(buff), 0);
 	close(fd);
 	for (z = 0; z < fsize; z++)
 		if (buff[z] == '\n')
@@ -104,7 +104,7 @@ int read_hist(info_t *info)
 	free(buff);
 	info->histcount = linecount;
 	while (info->histcount-- >= HIST_MAX)
-		delete_nod_index(&(info->history), 0);
+		delete_nod_at_index(&(info->history), 0);
 	renum_hist(info);
 	return (info->histcount);
 }
@@ -123,7 +123,7 @@ int build_hist_list(info_t *info, char *buf, int linecount)
 
 	if (info->history)
 		node = info->history;
-	add_node_end(&node, buf, linecount);
+	add_nod_end(&node, buf, linecount);
 
 	if (!info->history)
 		info->history = node;

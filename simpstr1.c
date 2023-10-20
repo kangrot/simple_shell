@@ -15,10 +15,10 @@ char *simp_strcpy(char *dest, char *src)
 		return (dest);
 	while (src[z])
 	{
-		dest[z] = src[i];
+		dest[z] = src[z];
 		z++;
 	}
-	dest[i] = 0;
+	dest[z] = 0;
 	return (dest);
 }
 

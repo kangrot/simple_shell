@@ -38,16 +38,16 @@ extern char **environ;
 
 
 /**
- * struct simpliststr - singly linked list
+ * struct liststr - singly linked list
  * @num: the number field
- * @simpstr: a string
+ * @str: a string
  * @next: points to the next node
  */
-typedef struct simpliststr
+typedef struct liststr
 {
 	int num;
-	char *simpstr;
-	struct simpliststr *next;
+	char *str;
+	struct liststr *next;
 } list_t;
 
 /**
@@ -170,7 +170,7 @@ int simp_atoi(char *);
 int simp_erratoi(char *);
 void printerror(info_t *, char *);
 int printd(int, int);
-char *conv_numb(long int, int, int);
+char *conv_num(long int, int, int);
 void remove_com(char *);
 
 /* toem_builtin.c */

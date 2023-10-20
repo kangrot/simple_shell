@@ -38,7 +38,7 @@ int simp_unsetenv(info_t *info, char *var)
 		p = starts(node->str, var);
 		if (p && *p == '=')
 		{
-			info->env_changed = delete_nod_index(&(info->env), i);
+			info->env_changed = delete_nod_at_index(&(info->env), z);
 			z = 0;
 			node = info->env;
 			continue;

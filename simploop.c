@@ -14,7 +14,7 @@ int hsh(info_t *info, char **av)
 
 	while (r != -1 && simp_builtin_ret != -2)
 	{
-		clear_info(info);
+		simp_clear_info(info);
 		if (simp_interactive(info))
 			_puts("$ ");
 		simp_eputchar(BUF_FLUSH);
@@ -67,11 +67,11 @@ int simp_find_builtin(info_t *info)
 		{NULL, NULL}
 	};
 
-	for (i = 0; builtintbl[z].type; z++)
+	for (z = 0; builtintbl[z].type; z++)
 		if (simp_strcmp(info->argv[0], builtintbl[z].type) == 0)
 		{
 			info->line_count++;
-			built_in_ret = builtintbl[i].func(info);
+			built_in_ret = builtintbl[z].func(info);
 			break;
 		}
 	return (built_in_ret);
@@ -97,7 +97,7 @@ void simp_find_cmmd(info_t *info)
 	for (z = 0, h = 0; info->arg[z]; z++)
 		if (!simp_is_delim(info->arg[z], " \t\n"))
 			h++;
-	if (!k)
+	if (!h)
 		return;
 
 	path = simp_find_path(info, simp_getenv(info, "PATH="), info->argv[0]);

@@ -49,7 +49,7 @@ char *simp_strncat(char *dest, char *src, int n)
 	while (src[j] != '\0' && j < n)
 	{
 		dest[z] = src[j];
-		i++;
+		z++;
 		j++;
 	}
 	if (j < n)
