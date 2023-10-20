@@ -5,7 +5,7 @@ char *simp_dup_chars(char *pathstr, int start, int stop);
 char *simp_find_path(info_t *info, char *pathstr, char *cmd);
 
 /**
- * simp_is_cmd - determines if a file is an executable command
+ * simp_is_cmd - checks if a file is an executable command
  * @info: the info struct
  * @path: path to the file
  *
