@@ -12,7 +12,7 @@ char *simp_strncpy(char *dest, char *src, int n)
 	int z, j;
 	char *s = dest;
 
-	i = 0;
+	z = 0;
 	while (src[z] != '\0' && z < n - 1)
 	{
 		dest[z] = src[z];

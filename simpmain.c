@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "simpshell.h"
 
 /**
  * main - entry point
@@ -26,19 +26,19 @@ int main(int ac, char **av)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				_eputs(av[0]);
-				_eputs(": 0: Can't open ");
-				_eputs(av[1]);
-				_eputchar('\n');
-				_eputchar(BUF_FLUSH);
+				simp_eputs(av[0]);
+				simp_eputs(": 0: Can't open ");
+				simp_eputs(av[1]);
+				simp_eputchar('\n');
+				simp_eputchar(BUF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
 		info->readfd = fd;
 	}
-	populate_env_list(info);
-	read_history(info);
+	pop_env_list(info);
+	read_hist(info);
 	hsh(info, av);
 	return (EXIT_SUCCESS);
 }

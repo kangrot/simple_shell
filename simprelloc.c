@@ -1,26 +1,26 @@
-#include "shell.h"
+#include "simpshell.h"
 
 /**
- **_memset - fills memory with a constant byte
+ **simp_memset - fills memory with a constant byte
  *@s: the pointer to the memory area
  *@b: the byte to fill *s with
  *@n: the amount of bytes to be filled
  *Return: (s) a pointer to the memory area s
  */
-char *_memset(char *s, char b, unsigned int n)
+char *simp_memset(char *s, char b, unsigned int n)
 {
-	unsigned int i;
+	unsigned int z;
 
-	for (i = 0; i < n; i++)
-		s[i] = b;
+	for (z = 0; z < n; z++)
+		s[z] = b;
 	return (s);
 }
 
 /**
- * ffree - frees a string of strings
+ * simp_ffree - frees a string of strings
  * @pp: string of strings
  */
-void ffree(char **pp)
+void simp_ffree(char **pp)
 {
 	char **a = pp;
 
@@ -32,31 +32,31 @@ void ffree(char **pp)
 }
 
 /**
- * _realloc - reallocates a block of memory
+ * simp_realloc - reallocates a block of memory
  * @ptr: pointer to previous malloc'ated block
- * @old_size: byte size of previous block
- * @new_size: byte size of new block
+ * @old_si: byte size of previous block
+ * @new_si: byte size of new block
  *
  * Return: pointer to da ol'block nameen.
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *simp_realloc(void *ptr, unsigned int old_si, unsigned int new_si)
 {
 	char *p;
 
 	if (!ptr)
-		return (malloc(new_size));
-	if (!new_size)
+		return (malloc(new_si));
+	if (!new_si)
 		return (free(ptr), NULL);
-	if (new_size == old_size)
+	if (new_si == old_si)
 		return (ptr);
 
-	p = malloc(new_size);
+	p = malloc(new_si);
 	if (!p)
 		return (NULL);
 
-	old_size = old_size < new_size ? old_size : new_size;
-	while (old_size--)
-		p[old_size] = ((char *)ptr)[old_size];
+	old_si = old_si < new_si ? old_si : new_si;
+	while (old_si--)
+		p[old_si] = ((char *)ptr)[old_si];
 	free(ptr);
 	return (p);
 }

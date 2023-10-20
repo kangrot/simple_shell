@@ -9,7 +9,7 @@
  */
 int simp_myhistory(info_t *info)
 {
-	simp_print_list(info->history);
+	print_list(info->history);
 	return (0);
 }
 
@@ -30,7 +30,7 @@ int simp_unset_alias(info_t *info, char *str)
 		return (1);
 	c = *p;
 	*p = 0;
-	retu = delete_nod_index(&(info->alias),
+	retu = delete_nod_at_index(&(info->alias),
 		get_nod_index(info->alias, nod_starts(info->alias, str, -1)));
 	*p = c;
 	return (retu);

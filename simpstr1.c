@@ -1,34 +1,34 @@
-#include "shell.h"
+#include "simpshell.h"
 
 /**
- * _strcpy - copies a string
+ * simp_strcpy - copies a string
  * @dest: the destination
  * @src: the source
  *
  * Return: pointer to destination
  */
-char *_strcpy(char *dest, char *src)
+char *simp_strcpy(char *dest, char *src)
 {
-	int i = 0;
+	int z = 0;
 
 	if (dest == src || src == 0)
 		return (dest);
-	while (src[i])
+	while (src[z])
 	{
-		dest[i] = src[i];
-		i++;
+		dest[z] = src[i];
+		z++;
 	}
 	dest[i] = 0;
 	return (dest);
 }
 
 /**
- * _strdup - duplicates a string
+ * simp_strdup - duplicates a string
  * @str: the string to duplicate
  *
  * Return: pointer to the duplicated string
  */
-char *_strdup(const char *str)
+char *simp_strdup(const char *str)
 {
 	int length = 0;
 	char *ret;
@@ -53,14 +53,14 @@ char *_strdup(const char *str)
  */
 void _puts(char *str)
 {
-	int i = 0;
+	int z = 0;
 
 	if (!str)
 		return;
-	while (str[i] != '\0')
+	while (str[z] != '\0')
 	{
-		_putchar(str[i]);
-		i++;
+		_putchar(str[z]);
+		z++;
 	}
 }
 
@@ -73,15 +73,15 @@ void _puts(char *str)
  */
 int _putchar(char c)
 {
-	static int i;
+	static int z;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || z >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, i);
-		i = 0;
+		write(1, buf, z);
+		z = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[i++] = c;
+		buf[z++] = c;
 	return (1);
 }

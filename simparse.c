@@ -64,7 +64,7 @@ char *simp_find_path(info_t *info, char *pathstr, char *cmd)
 	}
 	while (1)
 	{
-		if (!pathstr[z] || pathstr[i] == ':')
+		if (!pathstr[z] || pathstr[z] == ':')
 		{
 			path = simp_dup_chars(pathstr, curr_pos, z);
 			if (!*path)

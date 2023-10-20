@@ -1,4 +1,4 @@
-#include "simphell.h"
+#include "simpshell.h"
 
 /**
  * simp_clear_info - initializes info_t struct

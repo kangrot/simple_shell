@@ -10,7 +10,7 @@ char **get_environ(info_t *info)
 {
 	if (!info->environ || info->env_changed)
 	{
-		info->environ = list_to_strings(info->env);
+		info->environ = list_to_stri(info->env);
 		info->env_changed = 0;
 	}
 
@@ -67,11 +67,11 @@ int simp_setenv(info_t *info, char *var, char *value)
 	if (!var || !value)
 		return (0);
 
-	buf = malloc(_strlen(var) + _strlen(value) + 2);
+	buf = malloc(simp_strlen(var) + simp_strlen(value) + 2);
 	if (!buf)
 		return (1);
 	simp_strcpy(buf, var);
-	sim_strcat(buf, "=");
+	simp_strcat(buf, "=");
 	simp_strcat(buf, value);
 	node = info->env;
 	while (node)

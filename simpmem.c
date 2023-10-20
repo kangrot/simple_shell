@@ -1,12 +1,12 @@
-#include "shell.h"
+#include "simpshell.h"
 
 /**
- * bfree - frees a pointer and NULLs the address
+ * simp_bfree - frees a pointer and NULLs the address
  * @ptr: address of the pointer to free
  *
  * Return: 1 if freed, otherwise 0.
  */
-int bfree(void **ptr)
+int simp_bfree(void **ptr)
 {
 	if (ptr && *ptr)
 	{

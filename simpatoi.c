@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "simpshell.h"
 
 /**
  * simp_interactive - returns true if shell is interactive mode
