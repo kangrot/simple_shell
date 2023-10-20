@@ -2,74 +2,74 @@
 
 /**
  * simp_strlen - returns the length of a string
- * @s: the string whose length to check
+ * @a: the string whose length to check
  *
  * Return: integer length of string
  */
-int simp_strlen(char *s)
+int simp_strlen(char *a)
 {
 	int z = 0;
 
-	if (!s)
+	if (!a)
 		return (0);
 
-	while (*s++)
+	while (*a++)
 		z++;
 	return (z);
 }
 
 /**
  * simp_strcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
+ * @a1: the first strang
+ * @a2: the second strang
  *
  * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
  */
-int simp_strcmp(char *s1, char *s2)
+int simp_strcmp(char *a1, char *a2)
 {
-	while (*s1 && *s2)
+	while (*a1 && *a2)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+		if (*a1 != *a2)
+			return (*a1 - *a2);
+		a1++;
+		a2++;
 	}
-	if (*s1 == *s2)
+	if (*a1 == *a2)
 		return (0);
 	else
-		return (*s1 < *s2 ? -1 : 1);
+		return (*a1 < *a2 ? -1 : 1);
 }
 
 /**
  * starts - checks if needle starts with haystack
- * @haystack: string to search
- * @needle: the substring to find
+ * @kanstack: string to search
+ * @pin: the substring to find
  *
  * Return: address of next char of haystack or NULL
  */
-char *starts(const char *haystack, const char *needle)
+char *starts(const char *kanstack, const char *pin)
 {
-	while (*needle)
-		if (*needle++ != *haystack++)
+	while (*pin)
+		if (*pin++ != *kanstack++)
 			return (NULL);
-	return ((char *)haystack);
+	return ((char *)kanstack);
 }
 
 /**
  * simp_strcat - concatenates two strings
- * @dest: the destination buffer
- * @src: the source buffer
+ * @dk: the destination buffer
+ * @srcc: the source buffer
  *
  * Return: pointer to destination buffer
  */
-char *simp_strcat(char *dest, char *src)
+char *simp_strcat(char *dk, char *srcc)
 {
-	char *ret = dest;
+	char *rett = dk;
 
-	while (*dest)
-		dest++;
-	while (*src)
-		*dest++ = *src++;
-	*dest = *src;
-	return (ret);
+	while (*dk)
+		dk++;
+	while (*srcc)
+		*dk++ = *srcc++;
+	*dk = *srcc;
+	return (rett);
 }

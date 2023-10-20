@@ -2,32 +2,32 @@
 
 /**
  **simp_memset - fills memory with a constant byte
- *@s: the pointer to the memory area
- *@b: the byte to fill *s with
- *@n: the amount of bytes to be filled
+ *@a: the pointer to the memory area
+ *@d: the byte to fill *s with
+ *@x: the amount of bytes to be filled
  *Return: (s) a pointer to the memory area s
  */
-char *simp_memset(char *s, char b, unsigned int n)
+char *simp_memset(char *a, char d, unsigned int x)
 {
 	unsigned int z;
 
-	for (z = 0; z < n; z++)
-		s[z] = b;
-	return (s);
+	for (z = 0; z < x; z++)
+		a[z] = d;
+	return (a);
 }
 
 /**
  * simp_ffree - frees a string of strings
- * @pp: string of strings
+ * @qq: string of strings
  */
-void simp_ffree(char **pp)
+void simp_ffree(char **qq)
 {
-	char **a = pp;
+	char **a = qq;
 
-	if (!pp)
+	if (!qq)
 		return;
-	while (*pp)
-		free(*pp++);
+	while (*qq)
+		free(*qq++);
 	free(a);
 }
 

@@ -2,12 +2,12 @@
 
 /**
  * main - entry point
- * @ac: arg count
- * @av: arg vector
+ * @ad: arg count
+ * @ax: arg vector
  *
  * Return: 0 on success, 1 on error
  */
-int main(int ac, char **av)
+int main(int ad, char **ax)
 {
 	info_t info[] = { INFO_INIT };
 	int fd = 2;
@@ -17,18 +17,18 @@ int main(int ac, char **av)
 		: "=r" (fd)
 		: "r" (fd));
 
-	if (ac == 2)
+	if (ad == 2)
 	{
-		fd = open(av[1], O_RDONLY);
+		fd = open(ax[1], O_RDONLY);
 		if (fd == -1)
 		{
 			if (errno == EACCES)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				simp_eputs(av[0]);
+				simp_eputs(ax[0]);
 				simp_eputs(": 0: Can't open ");
-				simp_eputs(av[1]);
+				simp_eputs(ax[1]);
 				simp_eputchar('\n');
 				simp_eputchar(BUF_FLUSH);
 				exit(127);
@@ -39,6 +39,6 @@ int main(int ac, char **av)
 	}
 	pop_env_list(info);
 	read_hist(info);
-	hsh(info, av);
+	hsh(info, ax);
 	return (EXIT_SUCCESS);
 }

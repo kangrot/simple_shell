@@ -1,58 +1,58 @@
 #include "simpshell.h"
 
-int simp_is_chain(info_t *info, char *buf, size_t *p);
-void simp_check_chain(info_t *info, char *buf,
-		size_t *p, size_t z, size_t len);
+int simp_is_chain(info_t *info, char *b, size_t *z);
+void simp_check_chain(info_t *info, char *b,
+		size_t *p, size_t z, size_t lent);
 int rep_alias(info_t *info);
 int rep_vars(info_t *info);
-int rep_stri(char **old, char *new);
+int rep_stri(char **o_stri, char *n_stri);
 
 /**
  * simp_is_chain - test if current char in buffer is a chain delimeter
  * @info: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
+ * @b: the char buffer
+ * @z: address of current position in buf
  *
  * Return: 1 if chain delimeter, 0 otherwise
  */
-int simp_is_chain(info_t *info, char *buf, size_t *p)
+int simp_is_chain(info_t *info, char *b, size_t *z)
 {
-	size_t j = *p;
+	size_t j = *z;
 
-	if (buf[j] == '|' && buf[j + 1] == '|')
+	if (b[j] == '|' && b[j + 1] == '|')
 	{
-		buf[j] = 0;
+		b[j] = 0;
 		j++;
 		info->cmmd_buff_type = CMD_OR;
 	}
-	else if (buf[j] == '&' && buf[j + 1] == '&')
+	else if (b[j] == '&' && b[j + 1] == '&')
 	{
-		buf[j] = 0;
+		b[j] = 0;
 		j++;
 		info->cmmd_buff_type = CMD_AND;
 	}
-	else if (buf[j] == ';') /* found end of this command */
+	else if (b[j] == ';') /* found end of this command */
 	{
-		buf[j] = 0; /* replace semicolon with null */
+		b[j] = 0; /* replace semicolon with null */
 		info->cmmd_buff_type = CMD_CHAIN;
 	}
 	else
 		return (0);
-	*p = j;
+	*z = j;
 	return (1);
 }
 
 /**
  * simp_check_chain - checks we should continue chaining based on last status
  * @info: the parameter struct
- * @buf: the char buffer
+ * @b: the char buffer
  * @p: address of current position in buf
  * @z: starting position in buf
- * @len: length of buf
+ * @lent: length of buf
  *
  * Return: Void
  */
-void simp_check_chain(info_t *info, char *buf, size_t *p, size_t z, size_t len)
+void simp_check_chain(info_t *info, char *b, size_t *p, size_t z, size_t lent)
 {
 	size_t j = *p;
 
@@ -60,16 +60,16 @@ void simp_check_chain(info_t *info, char *buf, size_t *p, size_t z, size_t len)
 	{
 		if (info->status)
 		{
-			buf[z] = 0;
-			j = len;
+			b[z] = 0;
+			j = lent;
 		}
 	}
 	if (info->cmmd_buff_type == CMD_OR)
 	{
 		if (!info->status)
 		{
-			buf[z] = 0;
-			j = len;
+			b[z] = 0;
+			j = lent;
 		}
 	}
 
@@ -84,23 +84,27 @@ void simp_check_chain(info_t *info, char *buf, size_t *p, size_t z, size_t len)
  */
 int rep_alias(info_t *info)
 {
-	int z;
+	int z = 0;
 	list_t *node;
-	char *p;
+	char *q;
 
-	for (z = 0; z < 10; z++)
+	while (z < 10)
 	{
 		node = nod_starts(info->alias, info->argv[0], '=');
 		if (!node)
 			return (0);
+
 		free(info->argv[0]);
-		p = simp_strchr(node->str, '=');
-		if (!p)
+		q = simp_strchr(node->str, '=');
+		if (!q)
 			return (0);
-		p = simp_strdup(p + 1);
-		if (!p)
+
+		q = simp_strdup(q + 1);
+		if (!q)
 			return (0);
-		info->argv[0] = p;
+
+		info->argv[0] = q;
+		z++;
 	}
 	return (1);
 }
@@ -148,14 +152,14 @@ int rep_vars(info_t *info)
 
 /**
  * rep_stri - replaces string
- * @old: address of old string
- * @new: new string
+ * @o_stri: address of old string
+ * @n_stri: new string
  *
  * Return: 1 if replaced, 0 otherwise
  */
-int rep_stri(char **old, char *new)
+int rep_stri(char **o_stri, char *n_stri)
 {
-	free(*old);
-	*old = new;
+	free(*o_stri);
+	*o_stri = n_stri;
 	return (1);
 }

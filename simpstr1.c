@@ -2,86 +2,86 @@
 
 /**
  * simp_strcpy - copies a string
- * @dest: the destination
- * @src: the source
+ * @dk: the destination
+ * @srcc: the source
  *
  * Return: pointer to destination
  */
-char *simp_strcpy(char *dest, char *src)
+char *simp_strcpy(char *dk, char *srcc)
 {
 	int z = 0;
 
-	if (dest == src || src == 0)
-		return (dest);
-	while (src[z])
+	if (dk == srcc || srcc == 0)
+		return (dk);
+	while (srcc[z])
 	{
-		dest[z] = src[z];
+		dk[z] = srcc[z];
 		z++;
 	}
-	dest[z] = 0;
-	return (dest);
+	dk[z] = 0;
+	return (dk);
 }
 
 /**
  * simp_strdup - duplicates a string
- * @str: the string to duplicate
+ * @stri: the string to duplicate
  *
  * Return: pointer to the duplicated string
  */
-char *simp_strdup(const char *str)
+char *simp_strdup(const char *stri)
 {
-	int length = 0;
-	char *ret;
+	int lent = 0;
+	char *retu;
 
-	if (str == NULL)
+	if (stri == NULL)
 		return (NULL);
-	while (*str++)
-		length++;
-	ret = malloc(sizeof(char) * (length + 1));
-	if (!ret)
+	while (*stri++)
+		lent++;
+	retu = malloc(sizeof(char) * (lent + 1));
+	if (!retu)
 		return (NULL);
-	for (length++; length--;)
-		ret[length] = *--str;
-	return (ret);
+	for (lent++; lent--;)
+		retu[lent] = *--stri;
+	return (retu);
 }
 
 /**
  *_puts - prints an input string
- *@str: the string to be printed
+ *@stri: the string to be printed
  *
  * Return: Nothing
  */
-void _puts(char *str)
+void _puts(char *stri)
 {
 	int z = 0;
 
-	if (!str)
+	if (!stri)
 		return;
-	while (str[z] != '\0')
+	while (stri[z] != '\0')
 	{
-		_putchar(str[z]);
+		_putchar(stri[z]);
 		z++;
 	}
 }
 
 /**
  * _putchar - writes the character c to stdout
- * @c: The character to print
+ * @w: The character to print
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _putchar(char c)
+int _putchar(char w)
 {
 	static int z;
-	static char buf[WRITE_BUF_SIZE];
+	static char buff[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || z >= WRITE_BUF_SIZE)
+	if (w == BUF_FLUSH || z >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, z);
+		write(1, buff, z);
 		z = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[z++] = c;
+	if (w != BUF_FLUSH)
+		buff[z++] = w;
 	return (1);
 }
