@@ -1,5 +1,9 @@
 #include "simpshell.h"
 
+int simp_myexit(info_t *info);
+int simp_mycd(info_t *info);
+int simp_myhelp(info_t *info);
+
 /**
  * simp_myexit - exits the shell
  * @info: Structure containing potential arguments. Used to maintain

@@ -1,5 +1,10 @@
 #include "simpshell.h"
 
+int hsh(info_t *, char **av);
+int simp_find_builtin(info_t *info);
+void simp_find_cmmd(info_t *info);
+void simp_fork_cmmd(info_t *info);
+
 /**
  * hsh - main shell loop
  * @info: the parameter & return info struct
@@ -28,10 +33,10 @@ int hsh(info_t *info, char **av)
 		}
 		else if (simp_interactive(info))
 			_putchar('\n');
-		free_info(info, 0);
+		simp_free_info(info, 0);
 	}
 	write_hist(info);
-	free_info(info, 1);
+	simp_free_info(info, 1);
 	if (!simp_interactive(info) && info->status)
 		exit(info->status);
 	if (simp_builtin_ret == -2)
@@ -109,7 +114,7 @@ void simp_find_cmmd(info_t *info)
 	else
 	{
 		if ((simp_interactive(info) || simp_getenv(info, "PATH=")
-			|| info->argv[0][0] == '/') && simp_is_cmmd(info, info->argv[0]))
+			|| info->argv[0][0] == '/') && simp_is_cmd(info, info->argv[0]))
 			simp_fork_cmmd(info);
 		else if (*(info->arg) != '\n')
 		{
@@ -140,7 +145,7 @@ void simp_fork_cmmd(info_t *info)
 	{
 		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{
-			free_info(info, 1);
+			simp_free_info(info, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);

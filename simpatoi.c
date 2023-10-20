@@ -1,5 +1,10 @@
 #include "simpshell.h"
 
+int simp_interactive(info_t *info);
+int simp_is_delim(char c, char *delim);
+int simp_isalpha(int c);
+int simp_atoi(char *s);
+
 /**
  * simp_interactive - returns true if shell is interactive mode
  * @info: struct address

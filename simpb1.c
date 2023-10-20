@@ -1,5 +1,11 @@
 #include "simpshell.h"
 
+int simp_myhistory(info_t *);
+int simp_myalias(info_t *);
+int simp_unset_alias(info_t *info, char *str);
+int simp_set_alias(info_t *info, char *str);
+int simp_print_alias(list_t *node);
+
 /**
  * simp_myhistory - displays the history list, one command by line, preceded
  *              with line numbers, starting at 0.

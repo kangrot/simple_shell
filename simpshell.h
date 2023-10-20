@@ -112,15 +112,15 @@ typedef struct simp_builtin
 
 
 /* toem_shloop.c */
-int hsh(info_t *, char **);
-int simp_find_builtin(info_t *);
-void simp_find_cmmd(info_t *);
-void simp_fork_cmmd(info_t *);
+int hsh(info_t *, char **av);
+int simp_find_builtin(info_t *info);
+void simp_find_cmmd(info_t *info);
+void simp_fork_cmmd(info_t *info);
 
 /* toem_parser.c */
-int simp_is_cmmd(info_t *, char *);
-char *simp_dup_chars(char *, int, int);
-char *simp_find_path(info_t *, char *, char *);
+int simp_is_cmd(info_t *info, char *path);
+char *simp_dup_chars(char *pathstr, int start, int stop);
+char *simp_find_path(info_t *info, char *pathstr, char *cmd);
 
 /* loophsh.c */
 int simp_loophsh(char **);
@@ -157,32 +157,37 @@ char *simp_memset(char *, char, unsigned int);
 void simp_ffree(char **);
 void *simp_realloc(void *, unsigned int, unsigned int);
 
-/* toem_memory.c */
+/* simp_memory.c */
 int simp_bfree(void **);
 
-/* toem_atoi.c */
-int simp_interactive(info_t *);
-int simp_is_delim(char, char *);
-int simp_isalpha(int);
-int simp_atoi(char *);
+/* simpatoi.c */
+int simp_interactive(info_t *info);
+int simp_is_delim(char c, char *delim);
+int simp_isalpha(int c);
+int simp_atoi(char *s);
 
-/* toem_errors1.c */
+/* simp_errors1.c */
 int simp_erratoi(char *);
 void printerror(info_t *, char *);
 int printd(int, int);
 char *conv_num(long int, int, int);
-void remove_com(char *);
+void rem_com(char *);
 
-/* toem_builtin.c */
-int simp_myexit(info_t *);
-int simp_mycd(info_t *);
-int simp_myhelp(info_t *);
+/* simp_builtin.c */
+int simp_myexit(info_t *info);
+int simp_mycd(info_t *info);
+int simp_myhelp(info_t *info);
 
 /* toem_builtin1.c */
 int simp_myhistory(info_t *);
 int simp_myalias(info_t *);
+int simp_unset_alias(info_t *info, char *str);
+int simp_set_alias(info_t *info, char *str);
+int simp_print_alias(list_t *node);
 
 /*toem_getline.c */
+ssize_t simp_input_buf(info_t *info, char **buff, size_t *len);
+ssize_t simp_read_buf(info_t *info, char *buff, size_t *z);
 ssize_t simp_get_input(info_t *);
 int simp_getline(info_t *, char **, size_t *);
 void simp_sigintHandler(int);
@@ -190,14 +195,14 @@ void simp_sigintHandler(int);
 /* toem_getinfo.c */
 void simp_clear_info(info_t *);
 void simp_set_info(info_t *, char **);
-void free_info(info_t *, int);
+void simp_free_info(info_t *, int);
 
 /* toem_environ.c */
-char *simp_getenv(info_t *, const char *);
-int simp_myenv(info_t *);
-int simp_mysetenv(info_t *);
-int simp_myunsetenv(info_t *);
-int pop_env_list(info_t *);
+int simp_myenv(info_t *info);
+char *simp_getenv(info_t *info, const char *name);
+int simp_mysetenv(info_t *info);
+int simp_myunsetenv(info_t *info);
+int pop_env_list(info_t *info);
 
 /* toem_getenv.c */
 char **get_environ(info_t *);
@@ -222,14 +227,15 @@ void free_list(list_t **);
 size_t list_leng(const list_t *);
 char **list_to_stri(list_t *);
 size_t print_list(const list_t *);
-list_t *nod_starts(list_t *, char *, char);
+list_t *nod_starts(list_t *node, char *prefix, char c);
 ssize_t get_nod_index(list_t *, list_t *);
 
 /* toem_vars.c */
-int simp_is_chain(info_t *, char *, size_t *);
-void simp_check_chain(info_t *, char *, size_t *, size_t, size_t);
-int rep_alias(info_t *);
-int rep_vars(info_t *);
-int rep_stri(char **, char *);
+int simp_is_chain(info_t *info, char *buf, size_t *p);
+void simp_check_chain(info_t *info, char *buf,
+		size_t *p, size_t z, size_t len);
+int rep_alias(info_t *info);
+int rep_vars(info_t *info);
+int rep_stri(char **old, char *new);
 
 #endif

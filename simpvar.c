@@ -1,5 +1,12 @@
 #include "simpshell.h"
 
+int simp_is_chain(info_t *info, char *buf, size_t *p);
+void simp_check_chain(info_t *info, char *buf,
+		size_t *p, size_t z, size_t len);
+int rep_alias(info_t *info);
+int rep_vars(info_t *info);
+int rep_stri(char **old, char *new);
+
 /**
  * simp_is_chain - test if current char in buffer is a chain delimeter
  * @info: the parameter struct

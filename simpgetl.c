@@ -1,5 +1,7 @@
 #include "simpshell.h"
 
+
+
 /**
  * simp_input_buf - buffers chained commands
  * @info: parameter struct
@@ -32,7 +34,7 @@ ssize_t simp_input_buf(info_t *info, char **buff, size_t *len)
 				r--;
 			}
 			info->linecount_flag = 1;
-			remove_com(*buff);
+			rem_com(*buff);
 			build_hist_list(info, *buff, info->histcount++);
 			/* if (simp_strchr(*buff, ';')) is this a command chain? */
 			{

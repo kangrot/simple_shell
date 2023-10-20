@@ -1,5 +1,11 @@
 #include "simpshell.h"
 
+int simp_myenv(info_t *info);
+char *simp_getenv(info_t *info, const char *name);
+int simp_mysetenv(info_t *info);
+int simp_myunsetenv(info_t *info);
+int pop_env_list(info_t *info);
+
 /**
  * simp_myenv - prints the current environment
  * @info: Structure containing potential arguments. Used to maintain
