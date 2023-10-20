@@ -4,8 +4,8 @@
  **simp_strncpy - copies a string
  *@dest: the destination string to be copied to
  *@src: the source string
- *@n: the amount of characters to be copied
- *Return: the concatenated string
+ *@n: amount of characters to be copied
+ *Return:concatenated string
  */
 char *simp_strncpy(char *dest, char *src, int n)
 {
